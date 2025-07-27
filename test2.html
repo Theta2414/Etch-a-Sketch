@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Event Delegation</title>
+    <style>
+        .container {
+            width: 600px;
+            height: 400px;
+            border: 2px solid #333;
+            padding: 20px;
+            margin: 20px;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .item {
+            width: 80px;
+            height: 80px;
+            background-color: #4CAF50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+        
+        .item:hover {
+            background-color: #45a049;
+        }
+        
+        .item.active {
+            background-color: #ff6b6b;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <h2>Mouse Down + Hover Event Delegation Demo</h2>
+    <p>Press and hold mouse button, then move over the items to see notifications</p>
+    
+    <div class="container" id="container">
+        <div class="item" data-name="Apple">🍎</div>
+        <div class="item" data-name="Banana">🍌</div>
+        <div class="item" data-name="Cherry">🍒</div>
+        <div class="item" data-name="Dragon Fruit">🐉</div>
+        <div class="item" data-name="Eggplant">🍆</div>
+        <div class="item" data-name="Fig">🪴</div>
+        <div class="item" data-name="Grape">🍇</div>
+        <div class="item" data-name="Honey">🍯</div>
+        <div class="item" data-name="Ice Cream">🍦</div>
+        <div class="item" data-name="Juice">🧃</div>
+        <div class="item" data-name="Kiwi">🥝</div>
+        <div class="item" data-name="Lemon">🍋</div>
+        <div class="item" data-name="Mango">🥭</div>
+        <div class="item" data-name="Nut">🥜</div>
+        <div class="item" data-name="Orange">🍊</div>
+        <div class="item" data-name="Peach">🍑</div>
+    </div>
+    
+    <div class="notification" id="notification"></div>
+
+    <script>
+        const container = document.getElementById('container');
+        const notification = document.getElementById('notification');
+        let isMouseDown = false;
+        let lastHoveredElement = null;
+
+        // Track mouse down state
+        container.addEventListener('mousedown', (e) => {
+            if (e.target.classList.contains('item')) {
+                isMouseDown = true;
+                const itemName = e.target.dataset.name;
+                console.log(`Mouse down on: ${itemName}`);
+                showNotification(`Mouse down on: ${itemName}`);
+                e.target.classList.add('active');
+                lastHoveredElement = e.target;
+            }
+        });
+
+        // Track mouse up to reset state
+        document.addEventListener('mouseup', () => {
+            if (isMouseDown) {
+                isMouseDown = false;
+                console.log('Mouse released');
+                hideNotification();
+                
+                // Remove active class from all items
+                const activeItems = container.querySelectorAll('.item.active');
+                activeItems.forEach(item => item.classList.remove('active'));
+                
+                lastHoveredElement = null;
+            }
+        });
+
+        // Use event delegation for mouseover events
+        container.addEventListener('mouseover', (e) => {
+            if (isMouseDown && e.target.classList.contains('item') && e.target !== lastHoveredElement) {
+                const itemName = e.target.dataset.name;
+                console.log(`Hovering over: ${itemName} (while mouse down)`);
+                showNotification(`Hovering over: ${itemName}`);
+                
+                // Remove active class from previous element
+                if (lastHoveredElement) {
+                    lastHoveredElement.classList.remove('active');
+                }
+                
+                // Add active class to current element
+                e.target.classList.add('active');
+                lastHoveredElement = e.target;
+            }
+        });
+
+        // Prevent context menu on right click to make demo cleaner
+        container.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+
+        function showNotification(message) {
+            notification.textContent = message;
+            notification.style.display = 'block';
+        }
+
+        function hideNotification() {
+            notification.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

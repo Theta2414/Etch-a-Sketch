@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <title>Etch-A-Sketch</title>
+</head>
+<body>
+    <main class="game">
+        <h1>Etch-A-Sketch</h1>
+        <div class="container">
+            <div class="control-panel">
+                <button class="start-new">Start new game</button>
+                <div class="field">
+                    <button class="mouse-mode">Choose mouse mode</button>
+                    <div class="mouse-field pop-up">
+                        <div class="display-flex">
+                            <div class="mode">
+                                <label for="-1">Hover</label>
+                                <input type="radio" name="mouse-mode" id="-1" value="-1" checked>
+                            </div>
+                            <div class="mode">
+                                <label for="1">Hover and press</label>
+                                <input type="radio" name="mouse-mode" id="1" value="1">
+                            </div>      
+                        </div>                 
+                    </div>
+                </div>
+                <div class="field">
+                    <button class="color-mode">Choose color mode</button>
+                    <div class="color-field pop-up">
+                        <div class="display-flex">
+                            <div class="mode">
+                                <label for="-2">Grey</label>
+                                <input type="radio" name="color-mode" id="-2" value="-1" checked>
+                            </div>        
+                            <div class="mode">
+                                <label for="2">Random</label>
+                                <input type="radio" name="color-mode" id="2" value="2">
+                            </div>    
+                        </div>                             
+                    </div>
+                </div>
+                <div class="field">
+                    <input type="checkbox" id="erase" hidden>
+                    <label class="erase-label" for="erase">Erase</label>
+                    <div class="erase-field pop-up">
+                        <div class="display-flex">
+                            <div class="mode">
+                                <label for="-3">Hover</label>
+                                <input type="radio" name="erase-mode" id="-3" value="-3" checked>
+                            </div>        
+                            <div class="mode">
+                                <label for="3">Hover and press</label>
+                                <input type="radio" name="erase-mode" id="3" value="3">
+                            </div>    
+                            <div class="erase-all">
+                                <p class="erase-all-btn">Erase all</p>
+                            </div>
+                        </div>                             
+                    </div>
+                </div>
+                <button class="reset">Reset</button>
+            </div>
+            <div class="display-container">
+                <ul class="display" type="none">
+                </ul>
+            </div>
+        </div>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <ul>
+            <li class="li li1">Text 1</li>
+            <li class="li li2">Text 2</li>
+            <li class="li li3">Text 3</li>
+            <li class="li li4">Text 4</li>
+        </ul>
+    </main>
+    <script>
+        let a;
+        let isMouseDown = false;
+
+        function show(event) {
+            if (isMouseDown) console.log(event.target);
+        };
+
+        const field = document.querySelector("ul");
+
+        field.addEventListener("mousedown", (event) => {
+            if (event.target.classList.contains("li")) {
+                isMouseDown = true;
+                show(event);
+            };
+        });
+
+        field.addEventListener("mouseup", (event) => { 
+            if (isMouseDown) isMouseDown = false;
+        });
+
+        field.addEventListener("mouseover", show);
+    </script>
+</body>
+</html>
