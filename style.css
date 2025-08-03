@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #74a892;
+    background-color: #00202e;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -30,11 +30,15 @@ h1 {
     flex-direction: column;
     gap: 20px;
     max-width: 400px;
+    padding: 20px;
+    background-color: #5c7993;
+    border-radius: 20px;
+    align-self: flex-start;
 }
 
 button {
     font-size: 24px;
-    background-color: #e5c185;
+    background-color: #d1dbe4;
     border-radius: 20px;
     border: 2px solid #494d58;
     color: #494d58;
@@ -45,7 +49,7 @@ button {
 
 .erase-label {
     font-size: 24px;
-    background-color: #e5c185;
+    background-color: #d1dbe4;
     border-radius: 20px;
     border: 2px solid #494d58;
     color: #494d58;
@@ -57,24 +61,26 @@ button {
 }
 
 #erase:checked ~ .erase-label {
-    border: 2px solid #349d24;
-    outline: 3px solid #349d24;
+    border: 2px solid #476f95;
+    outline: 3px solid #476f95;
 }
 
 button:hover {
-    background-color:  #c98e28; 
+    background-color:  #274058; 
+    color: whitesmoke;
 }
 
 .erase-label:hover {
-    background-color:  #c98e28; 
+    background-color:  #274058; 
+    color: whitesmoke;
 }
 
 button:active {
-    background-color: #e3b86d ;
+    background-color: #1c3042 ;
 }
 
 .erase-label:active {
-    background-color: #e3b86d ;   
+    background-color: #1c3042 ;   
 }
 
 .field {
@@ -83,8 +89,9 @@ button:active {
 }
 
 .pop-up {
-    background-color: #494d58;
-    padding: 10px;
+    color: #00202e;
+    background-color: #799cbd;
+    padding: 10px 15px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     position: absolute;
@@ -118,20 +125,34 @@ input[type="radio"] {
     width: 20px;
 }
 
+input[type="color"] {
+    width: 30px;
+    height: 20px;
+    border: none;
+}
+
+label[for="-2"] {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
 .erase-all-btn {
-    background-color: #c98e28;
+    background-color: #476f95;
     padding: 5px;
     border-radius: 5px;
     cursor: pointer;
     transition: .1s ease-in-out;
+    color: whitesmoke;
 }
 
 .erase-all-btn:hover {
-    background-color: #e5a22e;
+    background-color: #274058;
 }
 
 .erase-all-btn:active {
-    background-color: #8a621c;
+    background-color: #1c3042;
 }
 
 .display-container {
@@ -143,7 +164,7 @@ input[type="radio"] {
     align-self: flex-start;
     padding: 2px;
     margin: auto;
-    background-color: #008585;
+    background-color: #476f95;
 }
 
 .display {
@@ -157,7 +178,7 @@ input[type="radio"] {
 
 .pixel {
     aspect-ratio: 1/1;
-    background-color: #fbf2c4;
+    background-color: #f0eddeff;
 }
 
 @media (max-width: 808px) {
