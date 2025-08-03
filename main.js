@@ -25,12 +25,6 @@ let isMouseDown = false;
 
 let size = null;
 
-
-//Number greater than 0 returns true and vice versa
-function Bool(int) {
-    return (int > 0) ? true : false;
-}
-
 function startNew() {
     size = null;
     display.textContent = "";
