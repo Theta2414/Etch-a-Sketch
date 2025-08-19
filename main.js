@@ -25,6 +25,8 @@ let isMouseDown = false;
 
 let size = null;
 
+tempState = eraseOnPressAndHold;
+
 function startNew() {
     size = null;
     display.textContent = "";
@@ -76,6 +78,11 @@ eraseAllBtn.addEventListener("click", () => {
 reset.addEventListener("click", clear);
 
 display.addEventListener("mousedown", (e) => {
+    if (e.button === 2) {
+        isErasing = true;
+        tempState = eraseOnPressAndHold;
+        eraseOnPressAndHold = true;
+    }
     if (!(isMouseDown) && e.target.classList.contains("pixel")) {
         isMouseDown = true;
         e.preventDefault();
@@ -91,9 +98,17 @@ display.addEventListener("mousedown", (e) => {
     }
 });
 
+display.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+});
+
 document.addEventListener("mouseup", (e) => {
     if (isMouseDown) {
         isMouseDown = false;
+    }
+    if (e.button === 2) {
+        isErasing = false;
+        eraseOnPressAndHold = tempState;
     }
 });
 
